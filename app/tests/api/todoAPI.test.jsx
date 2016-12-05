@@ -1,7 +1,4 @@
 var expect = require('expect');
-var TestUtils = require('react-addons-test-utils');
-var ReactDOM = require('react-dom');
-var $ = require('jQuery');
 
 var TodoAPI = require('TodoAPI');
 
@@ -55,5 +52,51 @@ describe('TodoAPI', () => {
 			expect(actualTodos).toEqual(todos);
 		});
 
+	});
+
+	describe('filterTodos', () => {
+		var todos = [{
+			id: 1,
+			text: 'some Swimming',
+			completed: true
+		}, {
+			id: 2,
+			text: 'Cooking',
+			completed: false
+		}, {
+			id: 3,
+			text: 'same Baking',
+			completed: true
+		}];
+
+		it('should return all items when showCompleted is set to true', () => {
+			var filteredTodos = TodoAPI.filterTodos(todos, true, '');
+
+			expect(filteredTodos.length).toBe(3)
+		});
+
+		it('should return items with showCompleted set to false', () => {
+			var filteredTodos = TodoAPI.filterTodos(todos, false, '');
+
+			expect(filteredTodos.length).toBe(1)
+		});
+
+		it('should sort by completed status', () => {
+			var filteredTodos = TodoAPI.filterTodos(todos, true, '');
+
+			expect(filteredTodos[0].completed).toBe(false);
+		});
+
+		it('should filter todos by searchText', () => {
+			var filteredTodos = TodoAPI.filterTodos(todos, true, 'some');
+
+			expect(filteredTodos.length).toBe(2)
+		});
+
+		it('should return all todos when searchtext is empty', () => {
+			var filteredTodos = TodoAPI.filterTodos(todos, true, '');
+
+			expect(filteredTodos.length).toBe(3)
+		});
 	});
 });
