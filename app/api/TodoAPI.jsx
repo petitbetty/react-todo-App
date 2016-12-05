@@ -16,7 +16,7 @@ module.exports = {
 	//And now using a return statement, check if the result forn JSON.parse is an array, if not return an empty array.
 	getTodos: function () {
 		var stringTodos = localStorage.getItem('todos');
-		var todos: [];
+		var todos = [];
 
 		try {
 			todos = JSON.parse(stringTodos);
@@ -30,7 +30,7 @@ module.exports = {
 
 	//The filteredTodos function will return a filtered array according to the input from the search input field.
 
-	filterTodos: function (todos, showCompleted, filtered) {
+	filterTodos: function (todos, showCompleted, searchText) {
 
 		var filteredTodos = todos;
 
@@ -43,8 +43,8 @@ module.exports = {
 		//Filter by searchText
 		filteredTodos = filteredTodos.filter((todo) => {
 			var text = todo.text.toLowerCase()
-			console.log(text.indexOf(searchText));
-			//return searchText.length === 0 || text.indexOf(searchText) > -1;
+			//console.log(text.indexOf(searchText));
+			return searchText.length === 0 || text.indexOf(searchText) > -1;
 		});
 
 

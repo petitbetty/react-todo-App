@@ -65,7 +65,7 @@ describe('TodoAPI', () => {
 			completed: false
 		}, {
 			id: 3,
-			text: 'same Baking',
+			text: 'some Baking',
 			completed: true
 		}];
 
