@@ -16,7 +16,7 @@ describe('TodoAPI', () => {
 
 	describe('setTodos', () => {
 		it('should set valid todos array', () => {
-			var todos: [{
+			var todos = [{
 				id: 23,
 				text: 'Something to do',
 				completed: false
@@ -44,12 +44,11 @@ describe('TodoAPI', () => {
 		});
 
 		it('should return todos if valid array in localStorage', () => {
-			var todos: [{
+			var todos = [{
 				id: 23,
 				text: 'Something to do',
 				completed: false
 			}];
-
 			localStorage.setItem('todos', JSON.stringify(todos));
 			var actualTodos = TodoAPI.getTodos();
 			
